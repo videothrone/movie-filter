@@ -1,10 +1,16 @@
 .filter-card {
   background-color: var(--body-background);
+  border: 2px solid transparent;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 2rem;
   margin: 1rem;
+}
+
+.filter-card:hover,
+.filter-card:focus {
+  border: 2px solid var(--heading-color);
 }
 
 .filter-card__title,
