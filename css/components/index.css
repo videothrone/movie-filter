@@ -1,0 +1,8 @@
+/* Komponenten */
+@import "filter-card.css";
+@import "filter-content.css";
+@import "filter-movies.css";
+
+.default-layout__title {
+  margin-left: 2rem;
+}
