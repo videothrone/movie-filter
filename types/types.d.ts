@@ -13,7 +13,14 @@ export type Movie = {
   overview: string;
   release_date: string;
   poster_path: string;
-  vote_average: number;
+  vote_average?: number;
 };
 
-export type Movies = Movie[];
+export type MovieDetails = {
+  title: string;
+  imdb_id: string;
+  release_date: string;
+  poster_path: string;
+  vote_average?: number;
+  overview: string;
+};

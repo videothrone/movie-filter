@@ -1,0 +1,10 @@
+.movie-page {
+  padding: 0 2rem 2rem;
+}
+
+.movie-page__basic-details {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}

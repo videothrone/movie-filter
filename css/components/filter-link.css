@@ -1,0 +1,41 @@
+.filter-link {
+  background-color: var(--body-background);
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  color: var(--blue);
+  cursor: pointer;
+  display: inline-block;
+  font-family: var(--heading-font);
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.filter-link:hover,
+.filter-link:focus {
+  background-color: #e0e0e0;
+  border-color: #999;
+  outline: none;
+}
+
+.filter-link:focus {
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.filter-link:active {
+  background-color: #d0d0d0;
+  border-color: #666;
+}
+
+.filter-link--active {
+  background-color: #007bff;
+  color: white;
+  border-color: #0056b3;
+}
+
+.filter-link--active:hover,
+.filter-link--active:focus {
+  background-color: #0056b3;
+}

@@ -1,11 +1,11 @@
 import type { Movie } from "@/types/types";
 import FilterCard from "./FilterCard";
 
-type Props = {
+type FilterContentProps = {
   movies: Movie[];
 };
 
-export default function FilterContent({ movies }: Props) {
+export default function FilterContent({ movies }: FilterContentProps) {
   return (
     <div className="filter-content">
       {movies.map((movie) => (
