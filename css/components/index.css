@@ -5,9 +5,22 @@
 @import "filter-list.css";
 @import "filter-link.css";
 @import "movie-page.css";
+@import "pagination.css";
 
-.default-layout__title {
+.site-header__title {
   margin-left: 2rem;
+}
+
+.site-header__link {
+  color: white;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.site-header__link:hover,
+.site-header__link:focus {
+  color: white;
+  text-decoration: underline;
 }
 
 .movie-layout__back-wrapper {

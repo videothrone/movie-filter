@@ -9,9 +9,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="de">
       <body>
         <div className="site-wrapper">
-          {/* <Header /> */}
+          <Header />
           <div className="site-content">{children}</div>
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </body>
     </html>

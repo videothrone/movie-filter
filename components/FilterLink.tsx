@@ -1,26 +1,44 @@
-import Link from "next/link";
-import type { ReactNode } from "react";
+"use client";
 
-type FilterLinkProps = {
+import Link from "next/link";
+import type { AnchorHTMLAttributes } from "react";
+import { FaArrowRotateLeft } from "react-icons/fa6";
+import { useSearchParams } from "next/navigation";
+
+type FilterLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
-  children: ReactNode;
-  isActive?: boolean;
-  ariaLabel?: string;
+  label: string;
 };
 
-export default function FilterLink({
-  href,
-  children,
-  isActive,
-  ariaLabel,
-}: FilterLinkProps) {
+export default function FilterLink({ children, ...props }: FilterLinkProps) {
+  const isReset = props.label === "Zurücksetzen";
+
+  const searchParams = useSearchParams();
+  const linkParams = new URLSearchParams(props.href.split("?")[1] || "");
+
+  // Check whether all link parameters are present in the current search params, maybe too convoluted?
+  const isActive =
+    Array.from(linkParams.entries()).every(([key, value]) => {
+      return searchParams.get(key) === value;
+    }) &&
+    Array.from(searchParams.entries()).every(([key]) => {
+      return linkParams.has(key);
+    });
+
   return (
     <Link
-      href={href}
-      className={`filter-link ${isActive ? "filter-link--active" : ""}`}
-      aria-label={ariaLabel}
+      className={`filter-link ${isActive ? "filter-link--active" : ""} ${
+        isReset ? "filter-link--reset" : ""
+      }`}
+      {...props}
     >
-      {children}
+      {isReset ? (
+        <>
+          <FaArrowRotateLeft /> {props.label}
+        </>
+      ) : (
+        props.label
+      )}
     </Link>
   );
 }

@@ -24,3 +24,12 @@ export type MovieDetails = {
   vote_average?: number;
   overview: string;
 };
+
+export type MoviesResponse = {
+  movies: Movie[];
+  totalPages: number;
+};
+
+export type MovieWithGermanReleaseDate = MoviesResponse & {
+  germanReleaseDate?: string;
+};

@@ -1,4 +1,4 @@
-import { fetchApiData } from "@/lib/fetchApiData";
+import type { Movie } from "@/types/types";
 import FilterContent from "./FilterContent";
 import FilterList from "./FilterList";
 
@@ -8,21 +8,15 @@ export async function generateMetadata() {
   };
 }
 
-export default async function FilterMovies() {
-  const apiToken = process.env.NEXT_PUBLIC_TMDB_API_KEY as string;
-  const currentYear = new Date().getFullYear();
+type FilterMoviesProps = {
+  movies: Movie[];
+};
 
-  try {
-    const movies = await fetchApiData(currentYear, apiToken);
-
-    return (
-      <div className="filter-movies">
-        <FilterList />
-        <FilterContent movies={movies} />
-      </div>
-    );
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return <div>Failed to load movies.</div>;
-  }
+export default async function FilterMovies({ movies }: FilterMoviesProps) {
+  return (
+    <div className="filter-movies">
+      <FilterList />
+      <FilterContent movies={movies} />
+    </div>
+  );
 }

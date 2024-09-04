@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa6";
 import type { MovieDetails } from "@/types/types";
+import { translateDate } from "@/lib/helpers";
 
 interface Props {
   params: { id: string };
@@ -14,6 +15,7 @@ export default async function MoviePage({ params }: Props) {
   const movie = (await fetchMovieById(movieId, apiToken)) as MovieDetails;
   console.log("movie", movie);
   const roundedRating = Number((movie.vote_average ?? 0).toFixed(1));
+  const germanFormattedReleaseDate = translateDate(movie.release_date);
 
   if (!movieId || isNaN(parseInt(movieId))) {
     notFound();
@@ -23,7 +25,7 @@ export default async function MoviePage({ params }: Props) {
     <div className="movie-page">
       <h1>{movie.title}</h1>
       <div className="movie-page__basic-details">
-        <p>{movie.release_date}</p>
+        <p>{germanFormattedReleaseDate}</p>
         <p>
           <FaStar color="orange" /> {roundedRating}
         </p>

@@ -1,3 +1,4 @@
+import { translateDate } from "@/lib/helpers";
 import type { Movie } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,6 +14,8 @@ export default function FilterCard({ movie }: FilterCardProps) {
 
   const roundedRating = Number((movie.vote_average ?? 0).toFixed(1));
 
+  const germanFormattedReleaseDate = translateDate(movie.release_date);
+
   return (
     <>
       <Link href={`/movie/${movie.id}`} className="filter-card">
@@ -24,13 +27,18 @@ export default function FilterCard({ movie }: FilterCardProps) {
           height={750}
           className="filter-card__image"
         />
-        {roundedRating != null && (
+        {movie.vote_average === 0 ? (
           <p className="filter-card__rating">
             <FaStar color="orange" />
-            {roundedRating}
+            <span>N/A</span>
+          </p>
+        ) : (
+          <p className="filter-card__rating">
+            <FaStar color="orange" />
+            <span>{roundedRating}</span>
           </p>
         )}
-        <p className="filter-card__date">{movie.release_date}</p>
+        <p className="filter-card__date">{germanFormattedReleaseDate}</p>
       </Link>
     </>
   );
