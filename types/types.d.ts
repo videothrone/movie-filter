@@ -33,3 +33,18 @@ export type MoviesResponse = {
 export type MovieWithGermanReleaseDate = MoviesResponse & {
   germanReleaseDate?: string;
 };
+
+export type TMDBResponse = {
+  results: Movie[];
+  total_pages: number;
+};
+
+export type FilterOptions = {
+  year: number;
+  genres?: string[];
+  upcoming?: boolean;
+  sortBy?: "popularity" | "vote_average" | "release_date";
+  apiToken: string;
+  page?: number;
+  region?: string;
+};

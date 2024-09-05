@@ -41,6 +41,7 @@
   align-items: center;
   display: flex;
   gap: 0.5rem;
+  width: fit-content;
 }
 
 .filter-link__checkbox {

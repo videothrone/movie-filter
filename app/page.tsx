@@ -1,12 +1,7 @@
-import FilterMovies from "@/components/FilterMovies";
+import FilterMovies from "@/components/Filters/FilterMovies";
 import Pagination from "@/components/Pagination";
-import { fetchApiData } from "@/lib/fetchApiData";
-import {
-  fetchMoviesByGenre,
-  fetchMoviesByHighestRating,
-  fetchMoviesByUpcomingDate,
-} from "@/lib/fetchMoviesByFilter";
-import type { Movie, MoviesResponse } from "@/types/types";
+import { fetchMovies } from "@/lib/fetchApi";
+import type { Movie, FilterOptions } from "@/types/types";
 import type { Metadata } from "next";
 
 const currentYear = new Date().getFullYear();
@@ -20,47 +15,39 @@ export default async function Home({
   searchParams: { filter?: string; page?: string };
 }) {
   const apiToken = process.env.NEXT_PUBLIC_TMDB_API_KEY as string;
-  const currentDate = new Date().toISOString();
   const currentPage = searchParams.page ? parseInt(searchParams.page) : 1;
 
-  /* let movies = await fetchApiData(currentYear, apiToken); */
-  let moviesData: MoviesResponse;
   let movies: Movie[] = [];
   let totalPages = 1;
-
-  /* const validGenres = new Set(["action", "horror", "scifi"]);
-  const isValidGenre = validGenres.has(searchParams.get("filter")); */
+  const filterOptions: FilterOptions = {
+    year: currentYear,
+    apiToken,
+    page: currentPage,
+  };
 
   console.log("searchParams", searchParams);
 
-  if (searchParams.filter === "upcoming") {
-    moviesData = (await fetchMoviesByUpcomingDate(
-      currentYear,
-      currentDate,
-      apiToken,
-      currentPage
-    )) as MoviesResponse;
-  } else if (searchParams.filter === "highest") {
-    moviesData = (await fetchMoviesByHighestRating(
-      currentYear,
-      apiToken,
-      currentPage
-    )) as MoviesResponse;
-  } else if (
-    searchParams.filter === "action" ||
-    searchParams.filter === "horror" ||
-    searchParams.filter === "scifi"
-  ) {
-    moviesData = (await fetchMoviesByGenre(
-      currentYear,
-      searchParams.filter,
-      apiToken,
-      currentPage
-    )) as MoviesResponse;
-  } else {
-    moviesData = await fetchApiData(currentYear, apiToken, currentPage);
+  if (searchParams.filter) {
+    const filters = searchParams.filter.split(",");
+
+    if (filters.includes("upcoming")) {
+      filterOptions.upcoming = true;
+    }
+
+    if (filters.includes("highest")) {
+      filterOptions.sortBy = "vote_average";
+    }
+
+    const genres = filters.filter((genreElem) =>
+      ["action", "horror", "scifi"].includes(genreElem)
+    );
+
+    if (genres.length > 0) {
+      filterOptions.genres = genres;
+    }
   }
 
+  const moviesData = await fetchMovies(filterOptions);
   movies = moviesData.movies;
   totalPages = moviesData.totalPages;
 

@@ -8,7 +8,7 @@ export async function fetchMovieById(movieId: string, apiToken: string) {
   };
 
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiToken}&append_to_response=release_dates`,
+    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiToken}&append_to_response=release_dates&with_runtime.gte=70`,
     options
   );
 

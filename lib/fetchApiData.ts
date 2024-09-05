@@ -14,7 +14,7 @@ export async function fetchApiData(
   };
 
   const response = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?region=DE&primary_release_year=${year}&api_key=${apiToken}&page=${page}`,
+    `https://api.themoviedb.org/3/discover/movie?region=DE&primary_release_year=${year}&api_key=${apiToken}&page=${page}&vote_count.gte=30&with_external_ids=true&with_runtime.gte=70&with_critic_reviews=true`,
     options
   );
 

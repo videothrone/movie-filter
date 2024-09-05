@@ -12,3 +12,8 @@
   margin: 0;
   padding: 1rem 0 0 2rem;
 }
+
+.filter-list__reset {
+  margin-top: 2rem;
+  padding-left: 2rem;
+}
