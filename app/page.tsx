@@ -11,7 +11,7 @@ import type { Metadata } from "next";
 
 const currentYear = new Date().getFullYear();
 export const metadata: Metadata = {
-  title: `Filme ${currentYear}`,
+  title: `Das Jahr ${currentYear} in Filmen`,
 };
 
 export default async function Home({

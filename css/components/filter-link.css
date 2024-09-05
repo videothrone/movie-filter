@@ -4,8 +4,9 @@
   border: 1px solid #ccc;
   color: var(--blue);
   cursor: pointer;
-  display: inline-block;
-  font-family: var(--heading-font);
+  display: inline-flex;
+  align-items: center;
+  /* font-family: var(--heading-font); */
   font-size: 1rem;
   line-height: 1.5;
   padding: 0.5rem 1rem;
@@ -40,4 +41,14 @@
   align-items: center;
   display: flex;
   gap: 0.5rem;
+}
+
+.filter-link__checkbox {
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+.filter-link__label {
+  display: inline-block;
+  vertical-align: middle;
 }

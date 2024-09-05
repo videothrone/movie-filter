@@ -8,6 +8,8 @@ import { useSearchParams } from "next/navigation";
 type FilterLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
   label: string;
+  type: string;
+  checked?: boolean;
 };
 
 export default function FilterLink({ children, ...props }: FilterLinkProps) {
@@ -25,19 +27,31 @@ export default function FilterLink({ children, ...props }: FilterLinkProps) {
       return linkParams.has(key);
     });
 
+  const linkClassName = `filter-link ${isActive ? "filter-link--active" : ""} ${
+    isReset ? "filter-link--reset" : ""
+  }`;
+
   return (
-    <Link
-      className={`filter-link ${isActive ? "filter-link--active" : ""} ${
-        isReset ? "filter-link--reset" : ""
-      }`}
-      {...props}
-    >
-      {isReset ? (
-        <>
-          <FaArrowRotateLeft /> {props.label}
-        </>
+    <Link className={linkClassName} {...props}>
+      {props.type === "sorting" ? (
+        isReset ? (
+          <>
+            <FaArrowRotateLeft />
+            {props.label}
+          </>
+        ) : (
+          props.label
+        )
       ) : (
-        props.label
+        <>
+          <input
+            type="checkbox"
+            className="filter-link__checkbox"
+            checked={isActive}
+            readOnly
+          />
+          <span className="filter-link__label">{props.label}</span>
+        </>
       )}
     </Link>
   );
