@@ -1,0 +1,8 @@
+.site-footer {
+  padding-left: 2rem;
+}
+
+.site-footer a {
+  color: white;
+  font-family: var(--heading-font);
+}

@@ -1,0 +1,30 @@
+.site-header {
+  background-image: url("../public/img/cinema.avif");
+}
+
+.site-header__logo {
+  margin-right: 1rem;
+}
+
+.site-header__title {
+  margin-left: 2rem;
+}
+
+.site-header__link {
+  color: white;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.site-header__link:hover,
+.site-header__link:focus {
+  color: white;
+}
+
+.site-header__year {
+  font-size: 14px;
+  margin-left: -1rem;
+  position: relative;
+  top: -0.3rem;
+  vertical-align: super;
+}
