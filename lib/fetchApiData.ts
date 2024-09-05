@@ -23,7 +23,7 @@ export async function fetchApiData(
   }
 
   const data = (await response.json()) as {
-    results: any[];
+    results: unknown[];
     total_pages: number;
   };
 

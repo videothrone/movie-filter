@@ -17,29 +17,29 @@ export default function FilterCard({ movie }: FilterCardProps) {
   const germanFormattedReleaseDate = translateDate(movie.release_date);
 
   return (
-    <>
-      <Link href={`/movie/${movie.id}`} className="filter-card">
-        <h3 className="filter-card__title h6">{movie.title}</h3>
-        <Image
-          src={fullImageUrl}
-          alt={`${movie.title} Poster`}
-          width={500}
-          height={750}
-          className="filter-card__image"
-        />
-        {movie.vote_average === 0 ? (
-          <p className="filter-card__rating">
-            <FaStar color="orange" />
-            <span>N/A</span>
-          </p>
-        ) : (
-          <p className="filter-card__rating">
-            <FaStar color="orange" />
-            <span>{roundedRating}</span>
-          </p>
-        )}
-        <p className="filter-card__date">{germanFormattedReleaseDate}</p>
+    <div className="filter-card">
+      <Link href={`/movie/${movie.id}`} className="filter-card__link">
+        <h3 className="filter-card__title visually-hidden">{movie.title}</h3>
       </Link>
-    </>
+      <Image
+        src={fullImageUrl}
+        alt={`${movie.title} Poster`}
+        width={500}
+        height={750}
+        className="filter-card__image"
+      />
+      {movie.vote_average === 0 ? (
+        <p className="filter-card__rating">
+          <FaStar color="orange" />
+          <span>N/A</span>
+        </p>
+      ) : (
+        <p className="filter-card__rating">
+          <FaStar color="orange" />
+          <span>{roundedRating}</span>
+        </p>
+      )}
+      <p className="filter-card__date">{germanFormattedReleaseDate}</p>
+    </div>
   );
 }

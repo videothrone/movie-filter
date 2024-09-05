@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <header className="site-header">
       <h1 className="h3 site-header__title">
-        🎞️
+        <span className="site-header__logo">🎞️</span>
         <Link
           href="/"
           className="site-header__link"

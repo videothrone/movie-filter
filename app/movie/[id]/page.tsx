@@ -4,12 +4,13 @@ import Image from "next/image";
 import { FaStar } from "react-icons/fa6";
 import type { MovieDetails } from "@/types/types";
 import { translateDate } from "@/lib/helpers";
+import type { Metadata } from "next/types";
 
-interface Props {
+type MoviePageProps = {
   params: { id: string };
-}
+};
 
-export default async function MoviePage({ params }: Props) {
+export default async function MoviePage({ params }: MoviePageProps) {
   const apiToken = process.env.NEXT_PUBLIC_TMDB_API_KEY as string;
   const movieId = params.id;
   const movie = (await fetchMovieById(movieId, apiToken)) as MovieDetails;
@@ -46,4 +47,16 @@ export default async function MoviePage({ params }: Props) {
       />
     </div>
   );
+}
+
+export async function generateMetadata({
+  params,
+}: MoviePageProps): Promise<Metadata> {
+  const apiToken = process.env.NEXT_PUBLIC_TMDB_API_KEY as string;
+  const movieId = params.id;
+  const movie = (await fetchMovieById(movieId, apiToken)) as MovieDetails;
+
+  return {
+    title: movie.title,
+  };
 }

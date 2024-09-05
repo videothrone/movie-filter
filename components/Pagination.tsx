@@ -25,11 +25,21 @@ export default function Pagination({
   return (
     <div className="pagination">
       {currentPage !== 1 && (
-        <Link href={handlePageChange(currentPage - 1)}>Zurück</Link>
+        <Link
+          href={handlePageChange(currentPage - 1)}
+          className="pagination__link pagination__link--prev"
+        >
+          Zurück
+        </Link>
       )}
-      <span>{`Page ${currentPage} of ${totalPages}`}</span>
+      <span className="pagination__current-page">{`Seite ${currentPage} von ${totalPages}`}</span>
       {currentPage !== totalPages && (
-        <Link href={handlePageChange(currentPage + 1)}>Vorwärts</Link>
+        <Link
+          href={handlePageChange(currentPage + 1)}
+          className="pagination__link pagination__link--next"
+        >
+          Nächste Seite
+        </Link>
       )}
     </div>
   );

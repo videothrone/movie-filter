@@ -26,7 +26,7 @@ export async function fetchMoviesByUpcomingDate(
   }
 
   const data = (await response.json()) as {
-    results: any[];
+    results: unknown[];
     total_pages: number;
   };
 
@@ -90,7 +90,7 @@ export async function fetchMoviesByGenre(
   }
 
   const data = (await response.json()) as {
-    results: any[];
+    results: unknown[];
     total_pages: number;
   };
 
@@ -131,7 +131,7 @@ export async function fetchMoviesByHighestRating(
   }
 
   const data = (await response.json()) as {
-    results: any[];
+    results: unknown[];
     total_pages: number;
   };
 

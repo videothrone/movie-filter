@@ -64,7 +64,7 @@ export function wait(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// Funktion die englische Daten ins deutsche Format umwandelt.
+// Funktion die englisches Datum ins deutsches Format umwandelt.
 export function translateDate(date: string) {
   return new Date(date).toLocaleDateString("de-DE", {
     day: "numeric",
