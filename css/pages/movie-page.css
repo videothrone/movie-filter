@@ -1,0 +1,54 @@
+.movie-page__title {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.movie-page__genre-list {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.movie-page__genre {
+  font-style: italic;
+}
+
+.movie-page__genre:not(:last-child)::after {
+  content: ",";
+}
+
+.movie-page__content {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.movie-page__image-wrapper {
+  min-width: 18.75rem;
+}
+
+.movie-page__image {
+  aspect-ratio: 2/3;
+  max-width: 18.75rem;
+  width: 100%;
+  height: auto;
+}
+
+.movie-page__overview-title {
+  margin-top: 0;
+}
+
+.movie-page__overview-text {
+  margin-top: 0;
+}
+
+@media (max-width: 768px) {
+  .movie-page__content {
+    flex-direction: column;
+  }
+
+  .movie-page__image {
+    max-width: 100%;
+  }
+}

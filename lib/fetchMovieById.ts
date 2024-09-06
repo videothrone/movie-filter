@@ -1,4 +1,14 @@
-export async function fetchMovieById(movieId: string, apiToken: string) {
+import type {
+  MovieDetails,
+  MovieWithGermanReleaseDate,
+  ReleaseDate,
+  VideoResponse,
+} from "@/types/types";
+
+export async function fetchMovieById(
+  movieId: string,
+  apiToken: string
+): Promise<MovieWithGermanReleaseDate> {
   const options = {
     method: "GET",
     headers: {
@@ -7,20 +17,34 @@ export async function fetchMovieById(movieId: string, apiToken: string) {
     },
   };
 
-  const response = await fetch(
+  const movieResponse = await fetch(
     `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiToken}&append_to_response=release_dates&with_runtime.gte=70`,
     options
   );
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch data");
+  if (!movieResponse.ok) {
+    throw new Error("Failed to fetch movie data");
   }
 
-  const data: any = await response.json();
+  const movieData = (await movieResponse.json()) as MovieDetails;
 
-  const germanReleaseDate = data.release_dates.results.find(
-    (result: any) => result.iso_3166_1 === "DE"
-  )?.release_dates[0]?.release_date;
+  const videoResponse = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiToken}`,
+    options
+  );
 
-  return { ...data, germanReleaseDate };
+  if (!videoResponse.ok) {
+    throw new Error("Failed to fetch video data");
+  }
+
+  const videoData = (await videoResponse.json()) as VideoResponse;
+
+  const germanReleaseDate: string | undefined =
+    movieData.release_dates.results.find(
+      (result: ReleaseDate) => result.iso_3166_1 === "DE"
+    )?.release_dates[0]?.release_date;
+
+  console.log("germanReleaseDate", germanReleaseDate);
+
+  return { ...movieData, videos: videoData.results, germanReleaseDate };
 }

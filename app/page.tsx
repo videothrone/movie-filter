@@ -38,8 +38,20 @@ export default async function Home({
       filterOptions.sortBy = "vote_average";
     }
 
+    if (filters.includes("date-asc")) {
+      filterOptions.sortBy = "release_date";
+    }
+
     const genres = filters.filter((genreElem) =>
-      ["action", "horror", "scifi"].includes(genreElem)
+      [
+        "action",
+        "horror",
+        "scifi",
+        "thriller",
+        "comedy",
+        "drama",
+        "family",
+      ].includes(genreElem)
     );
 
     if (genres.length > 0) {

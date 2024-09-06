@@ -19,10 +19,31 @@ export type Movie = {
 export type MovieDetails = {
   title: string;
   imdb_id: string;
-  release_date: string;
   poster_path: string;
   vote_average?: number;
   overview: string;
+  genres: { id: number; name: string }[];
+  videos: Video[];
+  release_dates: {
+    results: ReleaseDate[];
+  };
+};
+
+export type Video = {
+  iso_639_1: string;
+  iso_3166_1: string;
+  name: string;
+  key: string;
+  site: string;
+  size: number;
+  type: string;
+  official: boolean;
+  published_at: string;
+  id: string;
+};
+
+export type VideoResponse = {
+  results: Video[];
 };
 
 export type MoviesResponse = {
@@ -30,8 +51,20 @@ export type MoviesResponse = {
   totalPages: number;
 };
 
-export type MovieWithGermanReleaseDate = MoviesResponse & {
+export type MovieWithGermanReleaseDate = MovieDetails & {
   germanReleaseDate?: string;
+};
+
+export type ReleaseDate = {
+  certification: string;
+  iso_3166_1: string;
+  release_dates: {
+    certification: string;
+    iso_639_1: string;
+    note: string;
+    release_date: string;
+    type: number;
+  }[];
 };
 
 export type TMDBResponse = {

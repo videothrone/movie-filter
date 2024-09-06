@@ -2,6 +2,14 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+### Get moviedb.org API key and add it to .env
+- Get a free API-Key from https://api.themoviedb.org
+- Clone the repo
+- Add a `.env`. The correct format is:
+```
+NEXT_PUBLIC_TMDB_API_KEY=YourAPIKey
+```
+
 First, run the development server:
 
 ```bash

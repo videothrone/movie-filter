@@ -15,6 +15,14 @@ export const sortingData = [
     checked: false,
     disabled: false,
   },
+  /* {
+    id: 3,
+    type: "sorting",
+    filterName: "date-asc",
+    label: "Datum aufsteigend",
+    checked: false,
+    disabled: false,
+  }, */
   /*     {
       id: 3,
       type: "sorting",
@@ -63,6 +71,34 @@ export const filtersData = [
   },
   {
     id: 6,
+    type: "filter",
+    filterName: "thriller",
+    label: "Thriller",
+    disabled: false,
+  },
+  {
+    id: 7,
+    type: "filter",
+    filterName: "comedy",
+    label: "Comedy",
+    disabled: false,
+  },
+  {
+    id: 8,
+    type: "filter",
+    filterName: "drama",
+    label: "Drama",
+    disabled: false,
+  },
+  {
+    id: 9,
+    type: "filter",
+    filterName: "family",
+    label: "Familie",
+    disabled: false,
+  },
+  {
+    id: 10,
     type: "sorting",
     filterName: "/",
     label: "Zurücksetzen",

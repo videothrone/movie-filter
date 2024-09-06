@@ -22,13 +22,21 @@ export async function fetchMovies({
     },
   };
 
-  let url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiToken}&page=${page}&region=${region}&primary_release_year=${year}&vote_count.gte=50&with_external_ids=true&with_runtime.gte=70&with_critic_reviews=true`;
+  let url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiToken}&page=${page}&region=${region}&with_external_ids=true&with_runtime.gte=70`;
+
+  if (!upcoming) {
+    url += "&vote_count.gte=50&with_critic_reviews=true";
+  }
 
   if (genres && genres.length > 0) {
     const genreApiReferences: { [key: string]: number } = {
       action: 28,
       horror: 27,
       scifi: 878,
+      thriller: 53,
+      comedy: 35,
+      drama: 18,
+      family: 10751,
     };
     const genreIds = genres
       .map((genre) => genreApiReferences[genre] || "")
@@ -41,11 +49,16 @@ export async function fetchMovies({
   if (upcoming) {
     const currentDate = new Date().toISOString().split("T")[0];
     url += `&primary_release_date.gte=${currentDate}`;
+  } else {
+    url += `&primary_release_year=${year}`;
   }
 
   if (sortBy) {
-    url += `&sort_by=${sortBy}.desc`;
+    const sortOrder = sortBy === "release_date" ? "asc" : "desc";
+    url += `&sort_by=${sortBy}.${sortOrder}`;
   }
+
+  console.log(url);
 
   const response = await fetch(url, options);
 

@@ -1,9 +1,9 @@
 /* Komponenten */
-@import "filter-card.css";
-@import "filter-content.css";
-@import "filter-movies.css";
-@import "filter-list.css";
-@import "filter-link.css";
+@import "./filter/filter-card.css";
+@import "./filter/filter-content.css";
+@import "./filter/filter-movies.css";
+@import "./filter/filter-list.css";
+@import "./filter/filter-link.css";
 @import "movie-page.css";
 @import "pagination.css";
 @import "header.css";

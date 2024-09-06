@@ -11,7 +11,7 @@ export default function MovieLayout({ children }: Props) {
       <div className="movie-layout__back-wrapper">
         <Link href="/" className="movie-layout__back">
           <FaArrowLeft />
-          Back to main page
+          Zurück
         </Link>
       </div>
       {children}
