@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import FilterLink from "./FilterLink";
 import { filtersData, sortingData } from "@/data/filterLinksData";
+import { FaFilter, FaSort } from "react-icons/fa";
 
 export default function FilterList() {
   const router = useRouter();
@@ -71,7 +72,10 @@ export default function FilterList() {
 
   return (
     <div className="filter-list-wrapper">
-      <h6 className="filter-list__title">Sortierung</h6>
+      <h6 className="filter-list__title">
+        <FaSort />
+        Sortierung
+      </h6>
       <ul className="filter-list filter-list--sorting">
         {sorting.map((sortingElem) => (
           <li key={sortingElem.id} className="filter-list__item">
@@ -90,7 +94,10 @@ export default function FilterList() {
           </li>
         ))}
       </ul>
-      <h6 className="filter-list__title">Filter</h6>
+      <h6 className="filter-list__title">
+        <FaFilter style={{ fontSize: "1rem" }} />
+        Filter
+      </h6>
       <ul className="filter-list filter-list--filter">
         {filters
           .filter((filter) => filter.filterName !== "/")
