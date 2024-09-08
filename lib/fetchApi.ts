@@ -58,8 +58,6 @@ export async function fetchMovies({
     url += `&sort_by=${sortBy}.${sortOrder}`;
   }
 
-  console.log(url);
-
   const response = await fetch(url, options);
 
   if (!response.ok) {

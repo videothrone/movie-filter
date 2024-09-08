@@ -25,8 +25,6 @@ export default async function Home({
     page: currentPage,
   };
 
-  console.log("searchParams", searchParams);
-
   if (searchParams.filter) {
     const filters = searchParams.filter.split(",");
 

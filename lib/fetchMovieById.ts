@@ -44,7 +44,5 @@ export async function fetchMovieById(
       (result: ReleaseDate) => result.iso_3166_1 === "DE"
     )?.release_dates[0]?.release_date;
 
-  console.log("germanReleaseDate", germanReleaseDate);
-
   return { ...movieData, videos: videoData.results, germanReleaseDate };
 }
