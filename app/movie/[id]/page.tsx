@@ -23,6 +23,8 @@ export default async function MoviePage({ params }: MoviePageProps) {
   const germanFormattedReleaseDate = translateDate(
     movie.germanReleaseDate as string
   );
+  const posterPath = movie.poster_path;
+  const fallbackImageUrl = "/img/poster__fallback.png";
 
   const firstTrailer = movie.videos.find((video) => video.type === "Trailer");
 
@@ -42,13 +44,25 @@ export default async function MoviePage({ params }: MoviePageProps) {
       </ul>
       <div className="movie-page__content">
         <div className="movie-page__image-wrapper">
-          <Image
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-            alt={movie.title}
-            width={500}
-            height={700}
-            className="movie-page__image"
-          />
+          {posterPath ? (
+            <Image
+              src={`https://image.tmdb.org/t/p/w500${posterPath}`}
+              alt={`${movie.title} Poster`}
+              width={500}
+              height={700}
+              className="movie-page__image"
+              placeholder="blur"
+              blurDataURL={fallbackImageUrl}
+            />
+          ) : (
+            <Image
+              src="/img/poster__fallback.png"
+              alt={`${movie.title} Poster`}
+              width={500}
+              height={700}
+              className="movie-page__image"
+            />
+          )}
           <div className="movie-page__basic-details">
             <p>{germanFormattedReleaseDate}</p>
             <span>
