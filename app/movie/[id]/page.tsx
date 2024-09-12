@@ -64,11 +64,13 @@ export default async function MoviePage({ params }: MoviePageProps) {
             />
           )}
           <div className="movie-page__basic-details">
-            <p>{germanFormattedReleaseDate}</p>
+            <p className="movie-page__release-date">
+              {germanFormattedReleaseDate}
+            </p>
             <span>
               <strong>|</strong>
             </span>
-            <p>
+            <p className="movie-page__rating">
               <FaStar color="orange" /> {roundedRating}
             </p>
             <span>
