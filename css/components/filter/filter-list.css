@@ -20,3 +20,41 @@
   margin-top: 2rem;
   padding-left: 2rem;
 }
+
+.filter-list__wrapper {
+  display: flex;
+}
+
+.filter-list__section--genre {
+  position: relative;
+}
+
+.filter-list__dropdown-toggle {
+  display: flex;
+  gap: 0.5rem;
+  box-shadow: none;
+  width: fit-content;
+}
+
+.filter-list__dropdown {
+  display: none;
+  left: 0;
+  margin: 0.5rem 2rem;
+  padding-bottom: 1rem;
+  padding-left: 0;
+  position: absolute;
+  top: 100%;
+  width: fit-content;
+  z-index: 666;
+}
+
+.filter-list__dropdown--open {
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filter-list__dropdown .filter-link {
+  display: block;
+}

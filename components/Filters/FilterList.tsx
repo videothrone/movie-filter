@@ -3,8 +3,13 @@
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import FilterLink from "./FilterLink";
-import { filtersData, sortingData } from "@/data/filterLinksData";
+import {
+  filtersData,
+  sortingData,
+  filtersDataGenres,
+} from "@/data/filterLinksData";
 import { FaFilter, FaSort } from "react-icons/fa";
+import { FaListCheck } from "react-icons/fa6";
 
 export default function FilterList() {
   const router = useRouter();
@@ -12,6 +17,7 @@ export default function FilterList() {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [selectedSorting, setSelectedSorting] = useState<string>("popularity");
   const [activeSorting, setActiveSorting] = useState<string>("popularity");
+  const [isGenreDropdownOpen, setIsGenreDropdownOpen] = useState(false);
 
   useEffect(() => {
     const filterParam = searchParams.get("filter");
@@ -67,8 +73,13 @@ export default function FilterList() {
     router.push("/");
   };
 
+  const toggleGenreDropdown = () => {
+    setIsGenreDropdownOpen(!isGenreDropdownOpen);
+  };
+
   const filters = filtersData;
   const sorting = sortingData;
+  const genreFilters = filtersDataGenres;
 
   return (
     <div className="filter-list-wrapper">
@@ -98,6 +109,7 @@ export default function FilterList() {
         <FaFilter style={{ fontSize: "1rem" }} />
         Filter
       </h6>
+      <div className="filter-list__wrapper"></div>
       <ul className="filter-list filter-list--filter">
         {filters
           .filter((filter) => filter.filterName !== "/")
@@ -118,6 +130,40 @@ export default function FilterList() {
             </li>
           ))}
       </ul>
+      <div className="filter-list filter-list__section--genre">
+        <button
+          className="filter-list__dropdown-toggle filter-link"
+          onClick={toggleGenreDropdown}
+          aria-expanded={isGenreDropdownOpen}
+          aria-controls="genre-dropdown"
+        >
+          <FaListCheck style={{ fontSize: "1rem" }} /> Genres
+        </button>
+        <ul
+          id="genre-dropdown"
+          className={`filter-list__dropdown ${
+            isGenreDropdownOpen ? "filter-list__dropdown--open" : ""
+          }`}
+        >
+          {genreFilters
+            .filter((filter) => filter.filterName !== "/")
+            .map((filter) => (
+              <FilterLink
+                key={filter.filterName}
+                href="#"
+                label={filter.label}
+                type={filter.type}
+                checked={selectedFilters.includes(filter.filterName)}
+                disabled={filter.disabled}
+                onClick={() => handleFilterChange(filter.filterName)}
+                groupName="filter"
+                onActivate={() => {}}
+              >
+                {filter.label}
+              </FilterLink>
+            ))}
+        </ul>
+      </div>
       <div className="filter-list__reset">
         <FilterLink
           href="#"
