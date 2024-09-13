@@ -50,6 +50,5 @@
 }
 
 .filter-link__label {
-  display: inline-block;
-  vertical-align: middle;
+  margin-top: -0.05rem;
 }
