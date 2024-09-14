@@ -72,3 +72,18 @@ export function translateDate(date: string) {
     year: "numeric",
   });
 }
+
+// Scroll to top of viewport
+export const scrollToTop = () => {
+  const isScrollToTopVisible = document.querySelector(".scroll-to-top");
+
+  // Timeout for Chrome, since scrollTo() action fires before Chrome's default scroll to html anchor event
+  setTimeout(() => {
+    if (isScrollToTopVisible) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, 0);
+};
