@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import FilterLink from "./FilterLink";
+import FilterDropdown from "./FilterDropdown";
 import {
   filtersData,
   sortingData,
@@ -129,41 +130,13 @@ export default function FilterList() {
               </FilterLink>
             </li>
           ))}
+        <FilterDropdown
+          title="Genres"
+          filters={genreFilters}
+          selectedFilters={selectedFilters}
+          onFilterChange={handleFilterChange}
+        />
       </ul>
-      <div className="filter-list filter-list__section--genre">
-        <button
-          className="filter-list__dropdown-toggle filter-link"
-          onClick={toggleGenreDropdown}
-          aria-expanded={isGenreDropdownOpen}
-          aria-controls="genre-dropdown"
-        >
-          <FaListCheck style={{ fontSize: "1rem" }} /> Genres
-        </button>
-        <ul
-          id="genre-dropdown"
-          className={`filter-list__dropdown ${
-            isGenreDropdownOpen ? "filter-list__dropdown--open" : ""
-          }`}
-        >
-          {genreFilters
-            .filter((filter) => filter.filterName !== "/")
-            .map((filter) => (
-              <FilterLink
-                key={filter.filterName}
-                href="#"
-                label={filter.label}
-                type={filter.type}
-                checked={selectedFilters.includes(filter.filterName)}
-                disabled={filter.disabled}
-                onClick={() => handleFilterChange(filter.filterName)}
-                groupName="filter"
-                onActivate={() => {}}
-              >
-                {filter.label}
-              </FilterLink>
-            ))}
-        </ul>
-      </div>
       <div className="filter-list__reset">
         <FilterLink
           href="#"
