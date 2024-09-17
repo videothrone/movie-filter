@@ -3,6 +3,7 @@ import type { Movie } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
 import { FaStar } from "react-icons/fa";
+import GenreList from "../GenreList";
 
 type FilterCardProps = {
   movie: Movie;
@@ -42,6 +43,7 @@ export default function FilterCard({ movie }: FilterCardProps) {
           className="filter-card__image"
         />
       )}
+      <GenreList movie={movie} />
       {movie.vote_average === 0 ? (
         <p className="filter-card__rating">
           <FaStar color="orange" />

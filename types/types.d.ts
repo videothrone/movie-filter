@@ -8,6 +8,7 @@ declare module "react" {
 }
 
 export type Movie = {
+  forEach(arg0: (movie: any) => void): unknown;
   id: number;
   title: string;
   overview: string;
