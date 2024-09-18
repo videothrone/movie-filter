@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import FilterLink from "./FilterLink";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
@@ -23,11 +23,49 @@ export default function FilterDropdown({
   onFilterChange,
 }: FilterDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
+  const closeDropdown = () => setIsOpen(false);
+
+  // Close dropdown when pressing the "Esc" key
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeDropdown();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        closeDropdown();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
-    <div className={`filter-dropdown ${isOpen ? "filter-dropdown--open" : ""}`}>
+    <div
+      className={`filter-dropdown ${isOpen ? "filter-dropdown--open" : ""}`}
+      ref={dropdownRef}
+    >
       <button
         onClick={toggleDropdown}
         className="button filter-link filter-dropdown__toggle"
