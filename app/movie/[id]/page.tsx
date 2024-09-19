@@ -6,6 +6,7 @@ import type { MovieWithGermanReleaseDate } from "@/types/types";
 import { translateDate } from "@/lib/helpers";
 import type { Metadata } from "next/types";
 import YouTubeTrailer from "@/components/YouTubeTrailer";
+import Loading from "@/app/loading";
 
 type MoviePageProps = {
   params: { id: string };
@@ -35,6 +36,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
   return (
     <div className="movie-page">
       <h1 className="movie-page__title">{movie.title}</h1>
+      <Loading />
       <ul className="movie-page__genre-list">
         {movie.genres.map((genre) => (
           <li key={genre.id} className="movie-page__genre">

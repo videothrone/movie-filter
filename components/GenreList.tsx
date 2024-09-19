@@ -1,5 +1,3 @@
-import type { Movie } from "@/types/types";
-
 type GenreList = {
   adult: boolean;
   backdrop_path: string;
@@ -16,6 +14,7 @@ type GenreList = {
   vote_average: number;
   vote_count: number;
 };
+
 export default function GenreList({ movie }: any) {
   const genreApiReferences: { [key: string]: number } = {
     action: 28,
