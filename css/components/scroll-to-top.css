@@ -1,7 +1,7 @@
 .scroll-to-top {
   background-color: var(--blue);
   border: solid 0.1rem var(--blue);
-  bottom: 2rem;
+  bottom: 3.5rem;
   color: white;
   cursor: pointer;
   font-size: 1.4rem;
@@ -22,5 +22,6 @@
 @media all and (max-width: 500px) {
   .scroll-to-top {
     bottom: 3rem;
+    right: 2rem;
   }
 }
