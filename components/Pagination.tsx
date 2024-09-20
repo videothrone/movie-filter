@@ -2,6 +2,13 @@
 
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import {
+  HiChevronLeft,
+  HiChevronRight,
+  HiChevronDoubleLeft,
+  HiChevronDoubleRight,
+} from "react-icons/hi";
 
 type PaginationProps = {
   currentPage: number;
@@ -24,21 +31,49 @@ export default function Pagination({
 
   return (
     <div className="pagination">
+      {/* First Page Button */}
+      {currentPage !== 1 && (
+        <Link
+          href={handlePageChange(1)}
+          className="pagination__link pagination__link--first"
+          aria-label="Erste Seite"
+        >
+          <HiChevronDoubleLeft />
+        </Link>
+      )}
+
+      {/* Previous Page Button */}
       {currentPage !== 1 && (
         <Link
           href={handlePageChange(currentPage - 1)}
           className="pagination__link pagination__link--prev"
+          aria-label="Vorherige Seite"
         >
-          Zurück
+          <HiChevronLeft />
         </Link>
       )}
+
       <span className="pagination__current-page">{`Seite ${currentPage} von ${totalPages}`}</span>
+
+      {/* Next Page Button */}
       {currentPage !== totalPages && (
         <Link
           href={handlePageChange(currentPage + 1)}
           className="pagination__link pagination__link--next"
+          aria-label="Nächste Seite"
         >
-          Nächste Seite
+          <HiChevronRight />
+        </Link>
+      )}
+
+      {/* Last Page Button */}
+      {currentPage !== totalPages && (
+        <Link
+          href={handlePageChange(totalPages)}
+          className="pagination__link pagination__link--last"
+          aria-label="Letzte Seite"
+        >
+          <HiChevronDoubleRight />
         </Link>
       )}
     </div>
