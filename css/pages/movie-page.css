@@ -5,7 +5,8 @@
 
 .movie-page__genre-list {
   display: flex;
-  gap: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0 0.5rem;
   list-style: none;
   margin-left: 0;
   padding-left: 0;
