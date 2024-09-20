@@ -14,7 +14,7 @@
 
 .loader {
   display: none;
-  height: var(--loader-size);
+  height: 100vh;
   left: calc(50% - var(--loader-size) / 2);
   pointer-events: all;
   top: calc(50% - var(--loader-size) / 2);
