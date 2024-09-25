@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import {
   HiChevronLeft,
   HiChevronRight,
