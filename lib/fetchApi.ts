@@ -1,3 +1,4 @@
+import { genreApiReferences } from "@/data/genreApiReferences";
 import type {
   FilterOptions,
   Movie,
@@ -29,15 +30,6 @@ export async function fetchMovies({
   }
 
   if (genres && genres.length > 0) {
-    const genreApiReferences: { [key: string]: number } = {
-      action: 28,
-      horror: 27,
-      scifi: 878,
-      thriller: 53,
-      comedy: 35,
-      drama: 18,
-      family: 10751,
-    };
     const genreIds = genres
       .map((genre) => genreApiReferences[genre] || "")
       .filter(Boolean);
