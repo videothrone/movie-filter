@@ -4,6 +4,15 @@ A multi-filter / sort interface using the [TMBD API](https://developer.themovied
 
 This project was initially my final project for a [Next.js](https://nextjs.org) / TypeScript Course at [CimData](https://www.cimdata.de/weiterbildung/mobile-app-entwicklung-full-stack-webentwicklung-next-js-und-typescript/) done in about 4 days and bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/create-next-app). The boilerplate behind it was provided, though I'll change and adjust the project incrementally to my liking as I work on it.
 
+## Preview
+
+[![This Year In Movies](/public/img/screenshot.png)](https://app.netlify.com/sites/this-year-in-movies)
+
+## Live
+https://this-year-in-movies.netlify.app/
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1e7983ed-4de3-492b-a8c8-8704d7b6f4f1/deploy-status)](https://app.netlify.com/sites/this-year-in-movies/deploys)
+
 ## Getting Started (locally)
 
 - Get a free API-Key from https://api.themoviedb.org
@@ -25,8 +34,3 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Live
-https://this-year-in-movies.netlify.app/
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/1e7983ed-4de3-492b-a8c8-8704d7b6f4f1/deploy-status)](https://app.netlify.com/sites/this-year-in-movies/deploys)
