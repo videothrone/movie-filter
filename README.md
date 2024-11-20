@@ -6,7 +6,7 @@ This project was initially my final project for a [Next.js](https://nextjs.org) 
 
 ## Preview
 
-[![This Year In Movies](/public/img/screenshot.png)](https://app.netlify.com/sites/this-year-in-movies)
+[![This Year In Movies](/public/img/Screenshot.png)](https://app.netlify.com/sites/this-year-in-movies)
 
 ## Live
 https://this-year-in-movies.netlify.app/
